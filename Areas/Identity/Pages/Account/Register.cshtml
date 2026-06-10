@@ -1,0 +1,50 @@
+@page
+@model BarberBooking.Areas.Identity.Pages.Account.RegisterModel
+@{
+    ViewData["Title"] = "Rejestracja";
+}
+
+<section class="auth-panel">
+    <div>
+        <p class="eyebrow">Nowy klient</p>
+        <h1>Utworz konto</h1>
+        <p>Zarezerwuj termin online i sledz status wizyty w swoim panelu.</p>
+    </div>
+
+    <form method="post" class="form-card auth-card">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="mb-3">
+            <label asp-for="Input.FullName" class="form-label"></label>
+            <input asp-for="Input.FullName" class="form-control" autocomplete="name" placeholder="np. Jan Kowalski" />
+            <span asp-validation-for="Input.FullName" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Input.Email" class="form-label"></label>
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="np. jan@example.com" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Input.PhoneNumber" class="form-label"></label>
+            <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="tel" placeholder="np. 500 600 700" />
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Input.Password" class="form-label"></label>
+            <input asp-for="Input.Password" class="form-control" autocomplete="new-password" placeholder="Minimum 6 znakow" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label asp-for="Input.ConfirmPassword" class="form-label"></label>
+            <input asp-for="Input.ConfirmPassword" class="form-control" autocomplete="new-password" placeholder="Powtorz haslo" />
+            <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
+        </div>
+        <button type="submit" class="btn btn-dark w-100">Zarejestruj</button>
+        <div class="auth-links">
+            <a asp-page="./Login">Masz konto? Zaloguj sie</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

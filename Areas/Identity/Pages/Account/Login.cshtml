@@ -1,0 +1,51 @@
+@page
+@model BarberBooking.Areas.Identity.Pages.Account.LoginModel
+@{
+    ViewData["Title"] = "Logowanie";
+}
+
+<section class="auth-panel">
+    <div class="auth-copy">
+        <p class="eyebrow">Panel klienta</p>
+        <h1>Zaloguj sie</h1>
+        <p>Wejdz do panelu, sprawdz swoje rezerwacje i zarzadzaj terminami wizyt.</p>
+        <div class="auth-note">
+            <strong>Konto testowe</strong>
+            <span>Klient: user@barberbooking.local / User123!</span>
+            <span>Admin: admin@barberbooking.local / Admin123!</span>
+        </div>
+    </div>
+
+    <form method="post" class="form-card auth-card">
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <input type="hidden" asp-for="ReturnUrl" />
+
+        <div class="mb-3">
+            <label asp-for="Input.Email" class="form-label"></label>
+            <input asp-for="Input.Email" class="form-control" autocomplete="username" placeholder="np. user@barberbooking.local" />
+            <span asp-validation-for="Input.Email" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Input.Password" class="form-label"></label>
+            <input asp-for="Input.Password" class="form-control" autocomplete="current-password" placeholder="Wpisz haslo" />
+            <span asp-validation-for="Input.Password" class="text-danger"></span>
+        </div>
+
+        <div class="form-check mb-4">
+            <input asp-for="Input.RememberMe" class="form-check-input" />
+            <label asp-for="Input.RememberMe" class="form-check-label"></label>
+        </div>
+
+        <button type="submit" class="btn btn-gold w-100">Zaloguj</button>
+
+        <div class="auth-links">
+            <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Nie masz konta? Zarejestruj sie</a>
+            <a asp-page="./ForgotPassword">Nie pamietasz hasla?</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

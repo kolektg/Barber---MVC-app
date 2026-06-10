@@ -1,0 +1,49 @@
+@page
+@model BarberBooking.Areas.Identity.Pages.Account.Manage.IndexModel
+@{
+    ViewData["Title"] = "Moje konto";
+}
+
+<section class="auth-panel account-panel">
+    <div class="auth-copy">
+        <p class="eyebrow">Konto</p>
+        <h1>Moje konto</h1>
+        <p>Zmien dane kontaktowe widoczne przy Twoich rezerwacjach.</p>
+        <div class="auth-note">
+            <strong>Login</strong>
+            <span>@Model.Username</span>
+        </div>
+    </div>
+
+    <form method="post" class="form-card auth-card">
+        @if (!string.IsNullOrWhiteSpace(Model.StatusMessage))
+        {
+            <div class="alert alert-success">@Model.StatusMessage</div>
+        }
+
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+        <div class="mb-3">
+            <label asp-for="Input.FullName" class="form-label"></label>
+            <input asp-for="Input.FullName" class="form-control" autocomplete="name" placeholder="np. Jan Kowalski" />
+            <span asp-validation-for="Input.FullName" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <label asp-for="Input.PhoneNumber" class="form-label"></label>
+            <input asp-for="Input.PhoneNumber" class="form-control" autocomplete="tel" placeholder="np. 500 600 700" />
+            <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-gold w-100">Zapisz zmiany</button>
+
+        <div class="auth-links">
+            <a asp-area="" asp-controller="Reservations" asp-action="Index">Moje rezerwacje</a>
+            <a asp-area="" asp-controller="Services" asp-action="Index">Przejdz do uslug</a>
+        </div>
+    </form>
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
