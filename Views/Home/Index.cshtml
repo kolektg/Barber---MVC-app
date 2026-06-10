@@ -1,0 +1,68 @@
+@{
+    ViewData["Title"] = "Salon fryzjerski";
+}
+
+<section class="hero-band">
+    <div class="container hero-grid">
+        <div class="hero-copy">
+            <p class="eyebrow">Witamy w BarberBooking</p>
+            <h1>Styl, klasa <span>i atmosfera</span></h1>
+            <h2>Barber Krakow</h2>
+            <p>
+                Strzyzenie meskie, broda, fade i combo. Klienci wybieraja usluge oraz termin online,
+                a administrator zarzadza grafikiem i statusami rezerwacji.
+            </p>
+            <div class="hero-actions">
+                <a class="btn btn-gold btn-lg" asp-controller="Services" asp-action="Index">Zarezerwuj wizyte</a>
+                <a class="btn btn-outline-gold btn-lg" asp-controller="Reservations" asp-action="Index">Moje rezerwacje</a>
+            </div>
+            <div class="hero-info">
+                <div>
+                    <strong>Adres salonu</strong>
+                    <span>Do uzupelnienia</span>
+                </div>
+                <div>
+                    <strong>Pon-Sob: 09:00-21:00</strong>
+                    <span>Niedziela: 10:00-20:00</span>
+                </div>
+            </div>
+        </div>
+        <div class="hero-stats" aria-label="Statystyki salonu">
+            <div class="stat-tile">
+                <span>Klienci</span>
+                <strong>30 000+</strong>
+                <small>Zadowolonych klientow</small>
+            </div>
+            <div class="stat-tile">
+                <span>Uslugi</span>
+                <strong>20+</strong>
+                <small>Rodzajow uslug</small>
+            </div>
+            <div class="stat-tile">
+                <span>Opinie</span>
+                <strong>2300+</strong>
+                <small>Opinii Booksy</small>
+            </div>
+            <div class="stat-tile stat-tile-green">
+                <span>Online</span>
+                <strong>24/7</strong>
+                <small>Online booking</small>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="container feature-row">
+    <div>
+        <h2>Dla klienta</h2>
+        <p>Przegladanie oferty, wybor wolnego terminu, historia rezerwacji oraz edycja oczekujacych wizyt.</p>
+    </div>
+    <div>
+        <h2>Dla admina</h2>
+        <p>CRUD uslug i terminow, zatwierdzanie lub odrzucanie rezerwacji oraz dashboard ze statystykami.</p>
+    </div>
+    <div>
+        <h2>Technologie</h2>
+        <p>ASP.NET Core MVC, Razor, Entity Framework Core, SQLite, Identity, role, HTML, CSS i JavaScript.</p>
+    </div>
+</section>

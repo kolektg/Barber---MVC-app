@@ -1,0 +1,17 @@
+@model Service
+@{
+    ViewData["Title"] = "Edycja uslugi";
+}
+
+<section class="container form-layout">
+    <div>
+        <p class="eyebrow">Admin</p>
+        <h1>Edycja uslugi</h1>
+        <p>Zmien cene, opis, czas trwania lub widocznosc uslugi.</p>
+    </div>
+    <partial name="_ServiceForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

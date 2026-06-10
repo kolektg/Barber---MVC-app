@@ -1,0 +1,42 @@
+@model ReservationFormViewModel
+
+<form method="post" class="form-card js-reservation-form">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="ServiceId" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+    <div class="mb-3">
+        <label for="slotDate" class="form-label">Filtr daty</label>
+        <input id="slotDate" class="form-control" type="date" data-service-id="@Model.ServiceId" />
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="AppointmentSlotId" class="form-label"></label>
+        <select asp-for="AppointmentSlotId" class="form-select" id="slotSelect">
+            <option value="">Wybierz termin</option>
+            @foreach (var slot in Model.AvailableSlots)
+            {
+                <option value="@slot.Id">@slot.StartAt.ToString("dd.MM.yyyy HH:mm")</option>
+            }
+        </select>
+        <span asp-validation-for="AppointmentSlotId" class="text-danger"></span>
+        <div id="slotHint" class="form-text">Mozesz przefiltrowac terminy po dacie bez przeladowania strony.</div>
+    </div>
+
+    <div class="mb-3">
+        <label asp-for="CustomerName" class="form-label"></label>
+        <input asp-for="CustomerName" class="form-control" />
+        <span asp-validation-for="CustomerName" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="PhoneNumber" class="form-label"></label>
+        <input asp-for="PhoneNumber" class="form-control" />
+        <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Notes" class="form-label"></label>
+        <textarea asp-for="Notes" class="form-control" rows="4"></textarea>
+        <span asp-validation-for="Notes" class="text-danger"></span>
+    </div>
+    <button type="submit" class="btn btn-dark w-100">Zapisz rezerwacje</button>
+</form>

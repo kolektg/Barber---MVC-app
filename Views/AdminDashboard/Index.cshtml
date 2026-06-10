@@ -1,0 +1,39 @@
+@model AdminDashboardViewModel
+@{
+    ViewData["Title"] = "Dashboard admina";
+}
+
+<section class="container page-header">
+    <p class="eyebrow">Panel administratora</p>
+    <h1>Dashboard</h1>
+    <p>Szybki podglad aktywnosci salonu i rezerwacji.</p>
+</section>
+
+<section class="container stats-grid">
+    <div class="stat-card">
+        <span>Oczekujace</span>
+        <strong>@Model.PendingReservations</strong>
+    </div>
+    <div class="stat-card">
+        <span>Zatwierdzone</span>
+        <strong>@Model.ApprovedReservations</strong>
+    </div>
+    <div class="stat-card">
+        <span>Anulowane</span>
+        <strong>@Model.CancelledReservations</strong>
+    </div>
+    <div class="stat-card">
+        <span>Terminy dzis</span>
+        <strong>@Model.TodaySlots</strong>
+    </div>
+    <div class="stat-card">
+        <span>Przychod zatwierdzony</span>
+        <strong>@Model.ApprovedRevenue.ToString("0.00") zl</strong>
+    </div>
+</section>
+
+<section class="container admin-actions">
+    <a class="btn btn-dark" asp-controller="AdminReservations" asp-action="Index">Rezerwacje</a>
+    <a class="btn btn-outline-dark" asp-controller="AdminServices" asp-action="Index">Uslugi</a>
+    <a class="btn btn-outline-dark" asp-controller="AdminSlots" asp-action="Index">Terminy</a>
+</section>

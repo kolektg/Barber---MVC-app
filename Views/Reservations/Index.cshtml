@@ -1,0 +1,64 @@
+@model IEnumerable<Reservation>
+@{
+    ViewData["Title"] = "Moje rezerwacje";
+}
+
+<section class="container page-header">
+    <p class="eyebrow">Panel klienta</p>
+    <h1>Moje rezerwacje</h1>
+    <p>Sprawdz status wizyty, edytuj dane lub anuluj rezerwacje.</p>
+</section>
+
+<section class="container">
+    @if (TempData["Success"] is not null)
+    {
+        <div class="alert alert-success">@TempData["Success"]</div>
+    }
+
+    @if (!Model.Any())
+    {
+        <div class="empty-state">
+            <h2>Nie masz jeszcze rezerwacji</h2>
+            <a class="btn btn-dark" asp-controller="Services" asp-action="Index">Wybierz usluge</a>
+        </div>
+    }
+    else
+    {
+        <div class="table-responsive app-table">
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                        <th>Usluga</th>
+                        <th>Termin</th>
+                        <th>Status</th>
+                        <th>Dane</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var reservation in Model)
+                {
+                    <tr>
+                        <td>@reservation.Service?.Name</td>
+                        <td>@reservation.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                        <td><span class="status status-@reservation.Status.ToString().ToLowerInvariant()">@reservation.Status</span></td>
+                        <td>@reservation.CustomerName<br /><span class="text-muted">@reservation.PhoneNumber</span></td>
+                        <td class="text-end">
+                            @if (reservation.Status == ReservationStatus.Pending)
+                            {
+                                <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-id="@reservation.Id">Edytuj</a>
+                            }
+                            @if (reservation.Status is ReservationStatus.Pending or ReservationStatus.Approved)
+                            {
+                                <form class="d-inline" asp-action="Cancel" asp-route-id="@reservation.Id" method="post">
+                                    <button type="submit" class="btn btn-sm btn-outline-danger js-confirm" data-confirm="Anulowac rezerwacje?">Anuluj</button>
+                                </form>
+                            }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</section>

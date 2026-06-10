@@ -1,0 +1,69 @@
+@model IEnumerable<AppointmentSlot>
+@{
+    ViewData["Title"] = "Zarzadzanie terminami";
+}
+
+<section class="container page-header">
+    <div class="row align-items-end g-3">
+        <div class="col">
+            <p class="eyebrow">Admin</p>
+            <h1>Terminy</h1>
+            <p>Terminy w godzinach otwarcia tworza sie automatycznie na 7 dni do przodu. Recznie zmieniasz tylko wyjatki.</p>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-dark" asp-action="Create">Dodaj termin recznie</a>
+        </div>
+    </div>
+</section>
+
+<section class="container">
+    <form method="get" class="filter-panel">
+        <div>
+            <label for="day" class="form-label">Dzien</label>
+            <input id="day" name="day" class="form-control" type="date" value="@ViewBag.SelectedDay" />
+        </div>
+        <div>
+            <label for="serviceId" class="form-label">Usluga</label>
+            <select id="serviceId" name="serviceId" class="form-select" asp-items="ViewBag.Services">
+                <option value="">Wszystkie uslugi</option>
+            </select>
+        </div>
+        <div class="filter-actions">
+            <button type="submit" class="btn btn-gold">Filtruj</button>
+            <a class="btn btn-outline-dark" asp-action="Index">Dzisiaj</a>
+        </div>
+    </form>
+</section>
+
+<section class="container table-responsive app-table">
+    @if (!Model.Any())
+    {
+        <div class="empty-row">Brak terminow dla wybranych filtrow.</div>
+    }
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Usluga</th>
+                <th>Start</th>
+                <th>Koniec</th>
+                <th>Dostepny</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var slot in Model)
+        {
+            <tr>
+                <td>@slot.Service?.Name</td>
+                <td>@slot.StartAt.ToString("dd.MM.yyyy HH:mm")</td>
+                <td>@slot.EndAt.ToString("HH:mm")</td>
+                <td>@(slot.IsAvailable ? "Tak" : "Nie")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-id="@slot.Id">Edytuj</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@slot.Id">Usun</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>

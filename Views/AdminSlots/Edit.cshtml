@@ -1,0 +1,17 @@
+@model AppointmentSlot
+@{
+    ViewData["Title"] = "Edycja terminu";
+}
+
+<section class="container form-layout">
+    <div>
+        <p class="eyebrow">Admin</p>
+        <h1>Edycja terminu</h1>
+        <p>Zmien date, usluge lub dostepnosc wybranego terminu.</p>
+    </div>
+    <partial name="_SlotForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

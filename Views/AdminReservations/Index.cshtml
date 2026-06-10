@@ -1,0 +1,49 @@
+@model IEnumerable<Reservation>
+@{
+    ViewData["Title"] = "Rezerwacje";
+}
+
+<section class="container page-header">
+    <p class="eyebrow">Admin</p>
+    <h1>Rezerwacje</h1>
+    <p>Zatwierdzaj albo odrzucaj wizyty oczekujace na decyzje.</p>
+</section>
+
+<section class="container table-responsive app-table">
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Klient</th>
+                <th>Usluga</th>
+                <th>Termin</th>
+                <th>Status</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var reservation in Model)
+        {
+            <tr>
+                <td>
+                    @reservation.CustomerName<br />
+                    <span class="text-muted">@reservation.PhoneNumber</span>
+                </td>
+                <td>@reservation.Service?.Name</td>
+                <td>@reservation.Date.ToString("dd.MM.yyyy HH:mm")</td>
+                <td><span class="status status-@reservation.Status.ToString().ToLowerInvariant()">@reservation.Status</span></td>
+                <td class="text-end">
+                    @if (reservation.Status == ReservationStatus.Pending)
+                    {
+                        <form class="d-inline" method="post" asp-action="Approve" asp-route-id="@reservation.Id">
+                            <button type="submit" class="btn btn-sm btn-success">Zatwierdz</button>
+                        </form>
+                        <form class="d-inline" method="post" asp-action="Reject" asp-route-id="@reservation.Id">
+                            <button type="submit" class="btn btn-sm btn-outline-danger js-confirm" data-confirm="Odrzucic rezerwacje?">Odrzuc</button>
+                        </form>
+                    }
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>

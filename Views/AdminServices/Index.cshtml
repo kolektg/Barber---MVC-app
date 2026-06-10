@@ -1,0 +1,51 @@
+@model IEnumerable<Service>
+@{
+    ViewData["Title"] = "Zarzadzanie uslugami";
+}
+
+<section class="container page-header">
+    <div class="row align-items-end g-3">
+        <div class="col">
+            <p class="eyebrow">Admin</p>
+            <h1>Uslugi</h1>
+            <p>Dodawanie, edycja i usuwanie pozycji z oferty salonu.</p>
+        </div>
+        <div class="col-auto">
+            <a class="btn btn-dark" asp-action="Create">Dodaj usluge</a>
+        </div>
+    </div>
+</section>
+
+<section class="container table-responsive app-table">
+    @if (TempData["Info"] is not null)
+    {
+        <div class="alert alert-info m-3">@TempData["Info"]</div>
+    }
+
+    <table class="table align-middle">
+        <thead>
+            <tr>
+                <th>Nazwa</th>
+                <th>Cena</th>
+                <th>Czas</th>
+                <th>Aktywna</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        @foreach (var service in Model)
+        {
+            <tr>
+                <td>@service.Name</td>
+                <td>@service.Price.ToString("0.00") zl</td>
+                <td>@service.DurationMinutes min</td>
+                <td>@(service.IsActive ? "Tak" : "Nie")</td>
+                <td class="text-end">
+                    <a class="btn btn-sm btn-outline-dark" asp-action="Edit" asp-route-id="@service.Id">Edytuj</a>
+                    <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@service.Id">Usun</a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</section>

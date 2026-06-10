@@ -1,0 +1,22 @@
+@model AppointmentSlot
+
+<form method="post" class="form-card js-slot-form">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="EndAt" />
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="mb-3">
+        <label asp-for="ServiceId" class="form-label"></label>
+        <select asp-for="ServiceId" class="form-select" asp-items="ViewBag.Services"></select>
+        <span asp-validation-for="ServiceId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="StartAt" class="form-label"></label>
+        <input asp-for="StartAt" class="form-control" type="datetime-local" />
+        <span asp-validation-for="StartAt" class="text-danger"></span>
+    </div>
+    <div class="form-check form-switch mb-3">
+        <input asp-for="IsAvailable" class="form-check-input" />
+        <label asp-for="IsAvailable" class="form-check-label"></label>
+    </div>
+    <button type="submit" class="btn btn-dark w-100">Zapisz</button>
+</form>

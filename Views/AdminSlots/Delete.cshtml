@@ -1,0 +1,13 @@
+@model AppointmentSlot
+@{
+    ViewData["Title"] = "Usuwanie terminu";
+}
+
+<section class="container narrow-page">
+    <h1>Usun termin</h1>
+    <p>Czy na pewno chcesz usunac termin <strong>@Model.StartAt.ToString("dd.MM.yyyy HH:mm")</strong> dla uslugi <strong>@Model.Service?.Name</strong>?</p>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Usun</button>
+        <a class="btn btn-outline-dark" asp-action="Index">Wroc</a>
+    </form>
+</section>

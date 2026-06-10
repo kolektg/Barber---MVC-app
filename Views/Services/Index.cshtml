@@ -1,0 +1,39 @@
+@model IEnumerable<Service>
+@{
+    ViewData["Title"] = "Uslugi";
+    var today = DateTime.Today;
+    var tomorrow = today.AddDays(1);
+}
+
+<section class="page-header container">
+    <p class="eyebrow">Oferta salonu</p>
+    <h1>Wybierz usluge</h1>
+    <p>Sprawdz cene, czas trwania i najblizsze wolne terminy.</p>
+</section>
+
+<section class="container service-grid">
+@foreach (var service in Model)
+{
+    var todaySlots = service.AppointmentSlots
+        .Where(slot => slot.IsAvailable && slot.StartAt >= DateTime.Now && slot.StartAt < tomorrow)
+        .Select(slot => slot.StartAt)
+        .Distinct()
+        .Count();
+
+    <article class="service-card">
+        <div>
+            <h2>@service.Name</h2>
+            <p>@service.Description</p>
+        </div>
+        <div class="service-meta">
+            <span>@service.Price.ToString("0.00") zl</span>
+            <span>@service.DurationMinutes min</span>
+            <span>@todaySlots terminow dzisiaj</span>
+        </div>
+        <div class="d-flex gap-2">
+            <a class="btn btn-dark" asp-action="Details" asp-route-id="@service.Id">Szczegoly</a>
+            <a class="btn btn-outline-dark" asp-controller="Reservations" asp-action="Create" asp-route-serviceId="@service.Id">Rezerwuj</a>
+        </div>
+    </article>
+}
+</section>

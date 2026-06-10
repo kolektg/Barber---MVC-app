@@ -1,0 +1,17 @@
+@model ReservationFormViewModel
+@{
+    ViewData["Title"] = "Edycja rezerwacji";
+}
+
+<section class="container form-layout">
+    <div>
+        <p class="eyebrow">Edycja rezerwacji</p>
+        <h1>@Model.Service?.Name</h1>
+        <p>Zmiana danych jest mozliwa, dopoki rezerwacja oczekuje na zatwierdzenie.</p>
+    </div>
+    <partial name="_ReservationForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

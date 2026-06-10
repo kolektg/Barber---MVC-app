@@ -1,0 +1,17 @@
+@model AppointmentSlot
+@{
+    ViewData["Title"] = "Nowy termin";
+}
+
+<section class="container form-layout">
+    <div>
+        <p class="eyebrow">Admin</p>
+        <h1>Nowy termin</h1>
+        <p>Koniec wizyty zostanie policzony z czasu trwania uslugi.</p>
+    </div>
+    <partial name="_SlotForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

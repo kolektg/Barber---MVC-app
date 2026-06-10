@@ -1,0 +1,13 @@
+@model Service
+@{
+    ViewData["Title"] = "Usuwanie uslugi";
+}
+
+<section class="container narrow-page">
+    <h1>Usun usluge</h1>
+    <p>Czy na pewno chcesz usunac usluge <strong>@Model.Name</strong>?</p>
+    <form method="post">
+        <button type="submit" class="btn btn-danger">Usun</button>
+        <a class="btn btn-outline-dark" asp-action="Index">Wroc</a>
+    </form>
+</section>

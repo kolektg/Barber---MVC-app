@@ -1,0 +1,18 @@
+@model ReservationFormViewModel
+@{
+    ViewData["Title"] = "Nowa rezerwacja";
+}
+
+<section class="container form-layout">
+    <div>
+        <p class="eyebrow">Nowa rezerwacja</p>
+        <h1>@Model.Service?.Name</h1>
+        <p>@Model.Service?.Description</p>
+        <p class="price-line">@Model.Service?.Price.ToString("0.00") zl / @Model.Service?.DurationMinutes min</p>
+    </div>
+    <partial name="_ReservationForm" model="Model" />
+</section>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

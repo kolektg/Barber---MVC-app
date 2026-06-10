@@ -1,0 +1,36 @@
+@model Service
+@{
+    ViewData["Title"] = Model.Name;
+}
+
+<section class="container detail-layout">
+    <div>
+        <p class="eyebrow">Szczegoly uslugi</p>
+        <h1>@Model.Name</h1>
+        <p>@Model.Description</p>
+        <div class="service-meta detail-meta">
+            <span>@Model.Price.ToString("0.00") zl</span>
+            <span>@Model.DurationMinutes min</span>
+        </div>
+        <a class="btn btn-dark btn-lg mt-3" asp-controller="Reservations" asp-action="Create" asp-route-serviceId="@Model.Id">Zarezerwuj termin</a>
+    </div>
+    <aside class="side-panel">
+        <h2>Opis uslugi</h2>
+        <p>@Model.Description</p>
+        <ul class="service-details-list">
+            <li>
+                <span>Czas trwania</span>
+                <strong>@Model.DurationMinutes min</strong>
+            </li>
+            <li>
+                <span>Cena</span>
+                <strong>@Model.Price.ToString("0.00") zl</strong>
+            </li>
+            <li>
+                <span>Rezerwacja</span>
+                <strong>Online 24/7</strong>
+            </li>
+        </ul>
+        <p class="text-muted mt-3">Konkretny dzien i godzine wybierzesz w formularzu rezerwacji.</p>
+    </aside>
+</section>
